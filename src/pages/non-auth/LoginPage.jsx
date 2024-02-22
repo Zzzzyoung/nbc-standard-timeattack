@@ -8,20 +8,55 @@ const LoginPage = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
+  const onChangeIdHandler = (e) => {
+    setId(e.target.value);
+  };
+
+  const onChangePasswordHandler = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await authApi.post("/login?expiresIn=10m", {
+        id,
+        password,
+      });
+
+      const { accessToken, userId, nickname } = data;
+
+      if (data.success) {
+        alert("로그인에 성공하였습니다. 메인 페이지로 이동할게요.");
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("nickname", nickname);
+        navigate("/");
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+      console.log("Error", error);
+    }
+  };
+
   return (
     <div>
       <h1>Login</h1>
       <p>Login page</p>
 
-      <form onSubmit={async (e) => {}}>
+      <form onSubmit={onSubmitHandler}>
         <div>
           <label htmlFor="id">id</label>
-          <input />
+          <input type="text" value={id} onChange={onChangeIdHandler} />
         </div>
 
         <div>
           <label htmlFor="password">Password</label>
-          <input />
+          <input
+            type="password"
+            value={password}
+            onChange={onChangePasswordHandler}
+          />
         </div>
 
         <button type="submit">Login</button>
