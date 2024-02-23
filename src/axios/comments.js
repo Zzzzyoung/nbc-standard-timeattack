@@ -2,16 +2,14 @@ import axios from "axios";
 import { authApi } from "./auth";
 
 const commentsAxios = axios.create({
-  baseURL: "http://localhost:3001/comments",
+  baseURL: `${process.env.REACT_APP_API_URL}/comments`,
   timeout: 1500,
 });
 
 commentsAxios.interceptors.request.use(
   async (config) => {
-    try {
-      await authApi.get("/user");
-      return config;
-    } catch (error) {}
+    await authApi.get("/user");
+    return config;
   },
   (error) => {
     return Promise.reject(error);

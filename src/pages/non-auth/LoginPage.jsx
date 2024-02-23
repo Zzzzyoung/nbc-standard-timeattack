@@ -19,6 +19,7 @@ const LoginPage = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
+      // 로그인 시도
       const { data } = await authApi.post("/login?expiresIn=10m", {
         id,
         password,
@@ -27,10 +28,14 @@ const LoginPage = () => {
       const { accessToken, userId, nickname } = data;
 
       if (data.success) {
+        // 로그인 성공 시 안내 메시지
         alert("로그인에 성공하였습니다. 메인 페이지로 이동할게요.");
+
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("userId", userId);
         localStorage.setItem("nickname", nickname);
+
+        // 메인 페이지로 이동
         navigate("/");
       }
     } catch (error) {

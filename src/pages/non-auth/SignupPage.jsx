@@ -24,17 +24,22 @@ const SignupPage = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
+      // 시도할 내용
       const { data } = await authApi.post("/register", {
         id,
         password,
         nickname,
       });
 
+      // 성공 시
       if (data.success) {
         alert("회원가입에 성공하였습니다. 로그인 페이지로 이동할게요.");
         navigate("/login");
       }
     } catch (error) {
+      // 오류가 났을 때
+
+      // 실패 시 => 4~: 내 잘못 / 5~: 서버 잘못
       alert(error.response.data.message);
       console.log("Error", error);
     }

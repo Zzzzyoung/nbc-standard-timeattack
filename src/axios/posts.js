@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const postsAxios = axios.create({
-  baseURL: "http://localhost:3001/posts",
+  baseURL: `${process.env.REACT_APP_API_URL}/posts`,
   timeout: 1500,
 });
 
