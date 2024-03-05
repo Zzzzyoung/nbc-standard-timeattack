@@ -4,6 +4,7 @@ import Navigation from "../Navigation";
 
 const NonAuthLayout = () => {
   const isLogin = !!localStorage.getItem("accessToken");
+
   if (isLogin) {
     alert("이미 로그인 상태입니다.");
     return <Navigate to="/" replace />;

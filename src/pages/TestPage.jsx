@@ -13,7 +13,7 @@ const TestPage = () => {
       setComments([]);
     } catch (error) {
       console.log(error);
-      alert("포스팅 가져오는 도중 에러가 발생했습니다.");
+      alert("포스팅을 가져오는 도중 에러가 발생했습니다.");
     }
   };
 
@@ -24,6 +24,7 @@ const TestPage = () => {
       setPosts([]);
     } catch (error) {
       console.log(error);
+      alert("코멘트를 가져오는 도중 에러가 발생했습니다.");
     }
   };
 

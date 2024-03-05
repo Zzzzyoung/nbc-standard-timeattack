@@ -4,6 +4,7 @@ import Navigation from "../Navigation";
 
 const AuthLayout = () => {
   const isLogin = !!localStorage.getItem("accessToken");
+
   if (!isLogin) {
     alert("로그인이 필요한 페이지입니다.");
     return <Navigate to="/login" replace />;

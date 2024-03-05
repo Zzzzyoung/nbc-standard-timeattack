@@ -8,8 +8,12 @@ const commentsAxios = axios.create({
 
 commentsAxios.interceptors.request.use(
   async (config) => {
-    await authApi.get("/user");
-    return config;
+    try {
+      await authApi.get("/user");
+      return config;
+    } catch (error) {
+      return Promise.reject(error);
+    }
   },
   (error) => {
     return Promise.reject(error);

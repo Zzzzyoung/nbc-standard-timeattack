@@ -23,6 +23,7 @@ const SignupPage = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
     try {
       // 시도할 내용
       const { data } = await authApi.post("/register", {
@@ -52,12 +53,13 @@ const SignupPage = () => {
       <form onSubmit={onSubmitHandler}>
         <div>
           <label htmlFor="id">id</label>
-          <input type="text" value={id} onChange={onChangeIdHandler} />
+          <input type="text" id="id" value={id} onChange={onChangeIdHandler} />
         </div>
         <div>
           <label htmlFor="nickname">nickname</label>
           <input
             type="text"
+            id="nickname"
             value={nickname}
             onChange={onChangeNicknameHandler}
           />
@@ -67,6 +69,7 @@ const SignupPage = () => {
           <label htmlFor="password">Password</label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={onChangePasswordHandler}
           />

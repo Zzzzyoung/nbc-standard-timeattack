@@ -25,7 +25,7 @@ function SearchPage() {
   }, []);
 
   const filteredPosts = posts.filter(
-    (post) => post.writerUserId === Number(userId)
+    (post) => post.writerUserId === Number(userId) // 파라미터로 붙는 건 항상 string 타입이기 때문에 number로 형변환 필요
   );
 
   return (
